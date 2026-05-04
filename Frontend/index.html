@@ -3,51 +3,29 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>🎀 SBD Girly Store</title>
-<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<title>Syifa Sarah Nuraini 2406368883</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@700&family=Fredoka:wght@500;600&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   :root {
-    --bg: #fff5f7;
-    --surface: #ffffff;
-    --surface2: #fff0f3;
-    --border: #ffcad4;
-    --accent: #ff8fa3; /* Hot pink pop */
-    --accent2: #ffb3c1; /* Soft pink */
-    --text: #5e3038;
-    --muted: #a38087;
-    --error: #ff4d6d;
-    --success: #7bf1a8;
-    --font-display: 'Fredoka', sans-serif;
-    --font-body: 'Quicksand', sans-serif;
+    --bg: #fff9fa;
+    --glass: rgba(255, 255, 255, 0.7);
+    --border: rgba(255, 182, 193, 0.4);
+    --accent: #ff8fa3;
+    --text-main: #2d1b1e;
+    --text-muted: #8c7679;
+    --nav-font: 'Fredoka', sans-serif;
   }
 
-  html, body {
-    height: 100%;
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', sans-serif;
     background: var(--bg);
-    color: var(--text);
-    font-family: var(--font-body);
+    color: var(--text-main);
     overflow-x: hidden;
   }
 
-  /* ── Heart/Polka dot background ── */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image: radial-gradient(var(--accent2) 1px, transparent 1px);
-    background-size: 30px 30px;
-    opacity: 0.3;
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  /* ── Pages ── */
-  .page { display: none; min-height: 100vh; position: relative; z-index: 1; }
-  .page.active { display: flex; }
-
-  /* ── Nav ── */
+  /* ── Original Bubbly Nav ── */
   nav {
     position: fixed;
     top: 15px; left: 15px; right: 15px;
@@ -57,415 +35,212 @@
     justify-content: space-between;
     padding: 0.8rem 2rem;
     background: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(15px);
     border: 2px solid var(--border);
     border-radius: 50px;
     box-shadow: 0 4px 15px rgba(255, 143, 163, 0.1);
   }
 
-  .nav-logo {
-    font-family: var(--font-display);
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--accent);
-    text-shadow: 2px 2px 0px #fff;
-  }
+  .nav-logo { font-family: var(--nav-font); font-size: 1.4rem; font-weight: 600; color: var(--accent); }
 
-  .nav-links { display: flex; gap: 0.8rem; align-items: center; }
+  .nav-links { display: flex; gap: 0.8rem; }
 
   .nav-btn {
-    font-family: var(--font-display);
+    font-family: var(--nav-font);
     font-size: 0.85rem;
-    font-weight: 600;
     padding: 0.5rem 1.2rem;
     border: 2px solid transparent;
     border-radius: 25px;
     background: transparent;
-    color: var(--muted);
+    color: var(--text-muted);
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   }
 
   .nav-btn:hover, .nav-btn.active {
-    background: var(--accent2);
+    background: var(--accent);
     color: white;
     transform: scale(1.05);
   }
 
-  .nav-btn.logout:hover {
-    background: var(--error);
+  /* ── Hero & Search (Zeus UI Style) ── */
+  .hero { text-align: center; padding: 10rem 10% 4rem; }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    background: linear-gradient(to right, #2d1b1e, #ff8fa3);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 
-  /* ── Auth layout ── */
-  .auth-page {
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem;
+  .search-container { max-width: 500px; margin: 0 auto 4rem; position: relative; }
+  .search-container input {
+    width: 100%; padding: 1rem 1.5rem; border-radius: 100px;
+    border: 1px solid var(--border); background: var(--glass);
+    backdrop-filter: blur(5px); font-size: 1rem; outline: none; transition: 0.3s;
   }
+  .search-container input:focus { border-color: var(--accent); }
 
-  .auth-card {
-    width: 100%;
-    max-width: 400px;
-    background: var(--surface);
-    border: 3px solid var(--border);
-    padding: 2.5rem;
-    border-radius: 30px;
-    position: relative;
-    box-shadow: 10px 10px 0px var(--accent2);
-    animation: bounceIn 0.6s ease;
-  }
-
-  .auth-tag {
-    font-family: var(--font-display);
-    font-size: 0.8rem;
-    font-weight: 700;
-    color: var(--accent);
-    margin-bottom: 0.5rem;
-    text-align: center;
-  }
-
-  .auth-title {
-    font-family: var(--font-display);
-    font-size: 2.5rem;
-    font-weight: 700;
-    text-align: center;
-    margin-bottom: 1.5rem;
-    color: var(--accent);
-    line-height: 1;
-  }
-
-  /* ── Form ── */
-  .form-group { margin-bottom: 1rem; }
-
-  label {
-    display: block;
-    font-weight: 700;
-    font-size: 0.85rem;
-    color: var(--muted);
-    margin-left: 10px;
-    margin-bottom: 0.3rem;
-  }
-
-  input {
-    width: 100%;
-    padding: 0.8rem 1.2rem;
-    background: var(--surface2);
-    border: 2px solid var(--border);
-    color: var(--text);
-    font-family: var(--font-body);
-    font-size: 0.95rem;
-    border-radius: 20px;
-    outline: none;
-    transition: all 0.3s;
-  }
-
-  input:focus {
-    border-color: var(--accent);
-    background: #fff;
-    box-shadow: 0 0 10px rgba(255, 143, 163, 0.2);
-  }
-
-  .btn-primary {
-    width: 100%;
-    padding: 1rem;
-    margin-top: 1rem;
-    background: var(--accent);
-    color: white;
-    font-family: var(--font-display);
-    font-size: 1rem;
-    font-weight: 700;
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
-    box-shadow: 0 4px 0px #e67a8e;
-    transition: all 0.2s;
-  }
-
-  .btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 0px #e67a8e;
-    background: #ff7a91;
-  }
-
-  .btn-primary:active {
-    transform: translateY(2px);
-    box-shadow: 0 0px 0px #e67a8e;
-  }
-
-  .auth-footer {
-    margin-top: 1.5rem;
-    font-size: 0.85rem;
-    color: var(--muted);
-    text-align: center;
-  }
-
-  .auth-footer a {
-    color: var(--accent);
-    font-weight: 700;
-    text-decoration: none;
-    cursor: pointer;
-  }
-
-  /* ── Items page ── */
-  .items-page { flex-direction: column; padding-top: 6rem; }
-
-  .items-header {
-    padding: 2rem;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-  }
-
-  .items-title {
-    font-family: var(--font-display);
-    font-size: 3.5rem;
-    color: var(--accent);
-    text-shadow: 3px 3px 0px #fff;
-  }
-
-  .search-box {
-    background: white;
-    border: 2px solid var(--border);
-    border-radius: 30px;
-    padding: 5px 20px;
-    display: flex;
-    align-items: center;
-    width: 300px;
-  }
-
-  .search-input { border: none; background: transparent; padding: 10px; width: 100%; }
-
-  /* ── Grid ── */
-  .items-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 25px;
-    padding: 2rem;
-  }
-
+  /* ── Items Grid ── */
+  .items-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 2rem; padding: 0 10% 5rem; }
   .item-card {
-    background: white;
-    border-radius: 25px;
-    padding: 1.5rem;
-    border: 2px solid var(--border);
-    transition: all 0.3s;
-    position: relative;
-    overflow: hidden;
+    background: var(--glass); border: 1px solid var(--border);
+    padding: 2.5rem; border-radius: 30px; transition: 0.4s;
   }
+  .item-card:hover { transform: translateY(-10px); border-color: var(--accent); background: #fff; }
+  .item-card h3 { font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-bottom: 0.5rem; }
 
-  .item-card:hover {
-    transform: translateY(-10px) rotate(1deg);
-    box-shadow: 0 15px 30px rgba(255, 143, 163, 0.2);
+  /* ── Pages & Forms ── */
+  .page { display: none; min-height: 100vh; }
+  .page.active { display: block; }
+  .auth-card {
+    max-width: 450px; margin: 8rem auto; padding: 3rem;
+    background: #fff; border-radius: 35px; border: 1px solid var(--border);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.05);
   }
-
-  .item-card::before {
-    content: '🌸';
-    position: absolute;
-    top: -10px; right: -10px;
-    font-size: 2rem;
-    opacity: 0.1;
+  .auth-card h2 { font-family: 'Playfair Display'; font-size: 2.5rem; margin-bottom: 2rem; }
+  .auth-card input {
+    width: 100%; padding: 1rem; margin-bottom: 1rem;
+    border: 1px solid var(--border); border-radius: 15px; font-family: 'Inter';
   }
-
-  .item-name {
-    font-family: var(--font-display);
-    font-size: 1.4rem;
-    color: var(--text);
-    margin-bottom: 0.5rem;
+  .btn-submit {
+    width: 100%; padding: 1rem; background: var(--text-main); color: #fff;
+    border: none; border-radius: 15px; font-weight: 600; cursor: pointer; margin-top: 1rem;
   }
-
-  .item-price {
-    font-family: var(--font-display);
-    font-size: 1.2rem;
-    color: var(--accent);
-    font-weight: 700;
-  }
-
-  .item-stock {
-    display: inline-block;
-    padding: 5px 12px;
-    border-radius: 15px;
-    font-size: 0.75rem;
-    font-weight: 700;
-    margin-top: 10px;
-  }
-
-  .in-stock { background: #e7fff0; color: #2ecc71; }
-  .low-stock { background: #fff4e1; color: #f39c12; }
-  .out-stock { background: #ffe7e7; color: #e74c3c; }
-
-  /* ── Toast ── */
-  .toast {
-    position: fixed;
-    bottom: 2rem; left: 50%;
-    transform: translateX(-50%) translateY(200%);
-    background: var(--accent);
-    color: white;
-    padding: 1rem 2rem;
-    border-radius: 50px;
-    font-weight: 700;
-    z-index: 1000;
-    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  }
-  .toast.show { transform: translateX(-50%) translateY(0); }
-
-  /* ── Animations ── */
-  @keyframes bounceIn {
-    0% { opacity: 0; transform: scale(0.3); }
-    50% { opacity: 1; transform: scale(1.05); }
-    70% { transform: scale(0.9); }
-    100% { transform: scale(1); }
-  }
-
-  /* Custom Scrollbar */
-  ::-webkit-scrollbar { width: 8px; }
-  ::-webkit-scrollbar-track { background: var(--bg); }
-  ::-webkit-scrollbar-thumb { background: var(--accent2); border-radius: 10px; }
-
 </style>
 </head>
 <body>
 
 <nav id="navbar">
-  <div class="nav-logo">🎀 SBD//girly</div>
-  <div class="nav-links" id="navLinks">
+  <div class="nav-logo">🎀 Syifa Sarah Nuraini 2406368883</div>
+  <div class="nav-links">
     <button class="nav-btn" onclick="showPage('items')">Shop</button>
     <button class="nav-btn" id="nav-login-btn" onclick="showPage('login')">Login</button>
     <button class="nav-btn" id="nav-register-btn" onclick="showPage('register')">Join</button>
-    <button class="nav-btn logout" id="nav-logout-btn" style="display:none" onclick="logout()">Bye-bye!</button>
+    <button class="nav-btn" id="nav-logout-btn" style="display:none" onclick="logout()">Bye!</button>
   </div>
 </nav>
 
-<!-- ── LOGIN ── -->
-<div id="page-login" class="page auth-page active">
-  <div class="auth-card">
-    <div class="auth-tag">Welcome back, bestie! ✨</div>
-    <h1 class="auth-title">Sign In</h1>
-    <div id="login-alert" class="alert"></div>
-    <div class="form-group">
-      <label>Email</label>
-      <input type="email" id="login-email" placeholder="princess@sparkle.com">
+<!-- SHOP PAGE -->
+<div id="page-items" class="page active">
+  <section class="hero">
+    <h1>Create & Sell</h1>
+    <div class="search-container">
+      <input type="text" id="search-input" placeholder="Search our collection..." oninput="handleSearch()">
     </div>
-    <div class="form-group">
-      <label>Password</label>
-      <input type="password" id="login-password" placeholder="••••••••••">
-    </div>
-    <button class="btn-primary" id="login-btn" onclick="handleLogin()">Let's Go! 🎀</button>
-    <p class="auth-footer">New here? <a onclick="showPage('register')">Create account</a></p>
-  </div>
-</div>
-
-<!-- ── REGISTER ── -->
-<div id="page-register" class="page auth-page">
-  <div class="auth-card">
-    <div class="auth-tag">New Member? 🌸</div>
-    <h1 class="auth-title">Join Us</h1>
-    <div id="register-alert" class="alert"></div>
-    <div class="form-group">
-      <label>Name</label>
-      <input type="text" id="reg-name" placeholder="Your Sweet Name">
-    </div>
-    <div class="form-group">
-      <label>Username</label>
-      <input type="text" id="reg-username" placeholder="girly_pop_01">
-    </div>
-    <div class="form-group">
-      <label>Email</label>
-      <input type="email" id="reg-email" placeholder="hello@world.com">
-    </div>
-    <div class="form-group">
-      <label>Password</label>
-      <input type="password" id="reg-password" placeholder="Make it secure! ✨">
-    </div>
-    <button class="btn-primary" id="register-btn" onclick="handleRegister()">Sign Me Up! 🦄</button>
-    <p class="auth-footer">Already a member? <a onclick="showPage('login')">Login here</a></p>
-  </div>
-</div>
-
-<!-- ── ITEMS ── -->
-<div id="page-items" class="page items-page">
-  <div class="items-header">
-    <h1 class="items-title">The Catalog 🍓</h1>
-    <p id="items-count">Loading the cuteness...</p>
-    <div class="search-box">
-      <input class="search-input" type="text" id="search-input" placeholder="Search for treats..." oninput="filterItems()">
-    </div>
-  </div>
+  </section>
   <div class="items-grid" id="items-grid"></div>
 </div>
 
-<div class="toast" id="toast">✨ Success! ✨</div>
+<!-- LOGIN PAGE -->
+<div id="page-login" class="page">
+  <div class="auth-card">
+    <h2>Sign In</h2>
+    <input type="email" id="login-email" placeholder="Email">
+    <input type="password" id="login-password" placeholder="Password">
+    <button class="btn-submit" onclick="handleLogin()">Enter ✨</button>
+  </div>
+</div>
+
+<!-- REGISTER PAGE (RESTORED!) -->
+<div id="page-register" class="page">
+  <div class="auth-card">
+    <h2>Join Us</h2>
+    <input type="text" id="reg-name" placeholder="Full Name">
+    <input type="text" id="reg-username" placeholder="Username">
+    <input type="email" id="reg-email" placeholder="Email Address">
+    <input type="password" id="reg-password" placeholder="Password">
+    <button class="btn-submit" onclick="handleRegister()">Create Account 🌸</button>
+  </div>
+</div>
 
 <script>
-  // ... (All your original JavaScript logic stays exactly the same)
-  // Just make sure the API_BASE is correct!
   const API_BASE = 'http://localhost:3000';
   let token = localStorage.getItem('sbd_token') || null;
   let allItems = [];
 
-  window.addEventListener('DOMContentLoaded', () => {
-    showPage('items');
-    updateNav('items');
-  });
+  window.onload = () => {
+    loadItems();
+    updateNav();
+  };
 
   function showPage(name) {
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
     document.getElementById(`page-${name}`).classList.add('active');
-    updateNav(name);
-    if (name === 'items') loadItems();
   }
 
-  function updateNav(page) {
+  function updateNav() {
     const loggedIn = !!token;
-    document.getElementById('nav-login-btn').style.display = (loggedIn) ? 'none' : '';
-    document.getElementById('nav-register-btn').style.display = (loggedIn) ? 'none' : '';
-    document.getElementById('nav-logout-btn').style.display = loggedIn ? '' : 'none';
+    document.getElementById('nav-login-btn').style.display = loggedIn ? 'none' : 'block';
+    document.getElementById('nav-register-btn').style.display = loggedIn ? 'none' : 'block';
+    document.getElementById('nav-logout-btn').style.display = loggedIn ? 'block' : 'none';
   }
 
-  function showToast(msg) {
-    const t = document.getElementById('toast');
-    t.textContent = msg;
-    t.classList.add('show');
-    setTimeout(() => t.classList.remove('show'), 3000);
-  }
-
-  // --- Auth & Item logic (unchanged from your original) ---
-  // [Paste your handleLogin, handleRegister, loadItems, renderItems functions here]
-  
   async function loadItems() {
-    const grid = document.getElementById('items-grid');
     try {
       const res = await fetch(`${API_BASE}/items`);
       const data = await res.json();
-      allItems = data.payload || [];
+      allItems = data.payload || data;
       renderItems(allItems);
-    } catch (err) {
-      grid.innerHTML = "<p>Oh no! The server is being shy. 🎀</p>";
-    }
+    } catch (err) { console.error("Check your backend!"); }
   }
 
   function renderItems(items) {
     const grid = document.getElementById('items-grid');
-    document.getElementById('items-count').textContent = `${items.length} items found ✨`;
-    grid.innerHTML = items.map(item => {
-      const stockClass = item.stock <= 0 ? 'out-stock' : item.stock <= 5 ? 'low-stock' : 'in-stock';
-      return `
-        <div class="item-card">
-          <div class="item-name">${item.name}</div>
-          <div class="item-price">Rp ${item.price.toLocaleString()}</div>
-          <div class="item-stock ${stockClass}">${item.stock} in stock</div>
-        </div>
-      `;
-    }).join('');
+    grid.innerHTML = items.map(item => `
+      <div class="item-card">
+        <h3>${item.name}</h3>
+        <div style="color: #ff8fa3; font-weight:600;">Rp ${Number(item.price).toLocaleString()}</div>
+        <div style="font-size:0.8rem; margin-top:1rem; opacity:0.6;">STOCK: ${item.stock}</div>
+      </div>
+    `).join('');
+  }
+
+  function handleSearch() {
+    const query = document.getElementById('search-input').value.toLowerCase();
+    const filtered = allItems.filter(item => item.name.toLowerCase().includes(query));
+    renderItems(filtered);
+  }
+
+  async function handleLogin() {
+    const email = document.getElementById('login-email').value;
+    const password = document.getElementById('login-password').value;
+    const res = await fetch(`${API_BASE}/users/login`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password })
+    });
+    if (res.ok) {
+      const data = await res.json();
+      token = data.token;
+      localStorage.setItem('sbd_token', token);
+      updateNav();
+      showPage('items');
+    } else { alert("Login failed!"); }
+  }
+
+  async function handleRegister() {
+    const name = document.getElementById('reg-name').value;
+    const username = document.getElementById('reg-username').value;
+    const email = document.getElementById('reg-email').value;
+    const password = document.getElementById('reg-password').value;
+    const res = await fetch(`${API_BASE}/users/register`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, username, email, password })
+    });
+    if (res.ok) {
+      alert("Welcome to the club! Now please login.");
+      showPage('login');
+    } else { alert("Registration failed!"); }
   }
 
   function logout() {
     token = null;
     localStorage.removeItem('sbd_token');
+    updateNav();
     showPage('items');
-    showToast('See you later, queen! 👋');
   }
 </script>
 </body>
