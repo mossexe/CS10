@@ -16,13 +16,7 @@ const app = express();
 
 // Security middleware
 app.use(helmet());
-app.use(cors({
-  origin: process.env.CORS_ORIGIN || 'http://localhost:3000',
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
-  credentials: true,
-  optionsSuccessStatus: 204,
-}));
+app.use(cors()); // This allows everything, including your local file!
 
 // Rate limiting for auth endpoints
 const authLimiter = rateLimit({
