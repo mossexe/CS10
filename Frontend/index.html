@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🌸 SBD Store</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ── Nav ── -->
+<nav>
+  <div class="nav-logo">SBD <span>Store</span> 🌸</div>
+  <div class="nav-links">
+    <button class="nav-btn" onclick="showPage('items')">Shop</button>
+    <button class="nav-btn" id="nav-login-btn" onclick="showPage('login')">Login</button>
+    <button class="nav-btn" id="nav-register-btn" onclick="showPage('register')">Register</button>
+    <button class="nav-btn logout" id="nav-logout-btn" style="display:none" onclick="logout()">Log out</button>
+  </div>
+</nav>
+
+<!-- ── LOGIN PAGE ── -->
+<div id="page-login" class="page auth-page">
+  <div class="auth-card">
+    <div class="auth-emoji">🌸</div>
+    <h1 class="auth-title">Welcome Back!</h1>
+
+    <div id="login-alert" class="alert alert-error"></div>
+
+    <div class="form-group">
+      <label for="login-email">Email Address</label>
+      <input type="email" id="login-email" placeholder="you@example.com" autocomplete="email">
+    </div>
+    <div class="form-group">
+      <label for="login-password">Password</label>
+      <input type="password" id="login-password" placeholder="••••••••••" autocomplete="current-password">
+    </div>
+
+    <button class="btn-primary" id="login-btn" onclick="handleLogin()">Login 💕</button>
+
+    <p class="auth-footer">
+      No account? <a onclick="showPage('register')">Register here!</a>
+    </p>
+  </div>
+</div>
+
+<!-- ── REGISTER PAGE ── -->
+<div id="page-register" class="page auth-page">
+  <div class="auth-card">
+    <div class="auth-emoji">✨</div>
+    <h1 class="auth-title">Join Us!</h1>
+
+    <div id="register-alert" class="alert alert-error"></div>
+    <div id="register-success" class="alert alert-success"></div>
+
+    <div class="form-group">
+      <label for="reg-name">Full Name</label>
+      <input type="text" id="reg-name" placeholder="Your Name" autocomplete="name">
+    </div>
+    <div class="form-group">
+      <label for="reg-username">Username</label>
+      <input type="text" id="reg-username" placeholder="your_username" autocomplete="username">
+    </div>
+    <div class="form-group">
+      <label for="reg-email">Email Address</label>
+      <input type="email" id="reg-email" placeholder="you@example.com" autocomplete="email">
+    </div>
+    <div class="form-group">
+      <label for="reg-phone">Phone (optional)</label>
+      <input type="tel" id="reg-phone" placeholder="+62 812 3456 7890" autocomplete="tel">
+    </div>
+    <div class="form-group">
+      <label for="reg-password">Password</label>
+      <input type="password" id="reg-password" placeholder="Min. 10 chars, upper, lower, number, symbol" autocomplete="new-password">
+    </div>
+
+    <button class="btn-primary" id="register-btn" onclick="handleRegister()">Create Account 🎀</button>
+
+    <p class="auth-footer">
+      Already have an account? <a onclick="showPage('login')">Sign in!</a>
+    </p>
+  </div>
+</div>
+
+<!-- ── ITEMS PAGE ── -->
+<div id="page-items" class="page items-page">
+  <div class="items-header">
+    <div>
+      <h1 class="items-title">All Items 🛍️</h1>
+      <p class="items-sub" id="items-count">Loading...</p>
+    </div>
+    <div class="search-box">
+      <span class="search-icon">🔍</span>
+      <input class="search-input" type="text" id="search-input" placeholder="Search..." oninput="filterItems()">
+    </div>
+  </div>
+  <div class="items-grid" id="items-grid">
+    <div class="loading-state">
+      <div class="spinner"></div>
+      <span>Loading cute items... 🌸</span>
+    </div>
+  </div>
+</div>
+
+<!-- ── Toast ── -->
+<div class="toast" id="toast"></div>
+
+<!-- ── Scripts (order matters!) ── -->
+<script src="js/auth.js"></script>
+<script src="js/items.js"></script>
+<script src="js/nav.js"></script>
+
+</body>
+</html>
